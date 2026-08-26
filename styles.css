@@ -16,3 +16,5 @@ body{position:relative;background:#d9d1c5}
 .about-section{background:rgba(238,232,223,.92)}
 .prose-card,.blog-card:not(.featured){background:rgba(255,253,248,.74);box-shadow:0 12px 35px rgba(19,15,16,.08)}
 @media(max-width:780px){.word-wall span{font-size:clamp(40px,15vw,84px)}.word-wall span:nth-child(2n){font-size:clamp(30px,12vw,68px)}}
+
+.subject-name{margin:0 0 8px;color:#fff;font:900 clamp(22px,3.2vw,42px)/1 Impact,'Arial Black',sans-serif;letter-spacing:.08em;text-transform:uppercase;text-shadow:0 3px 18px rgba(0,0,0,.45)}
