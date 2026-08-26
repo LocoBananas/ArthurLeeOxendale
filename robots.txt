@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://locobananas.github.io/ArthurLeeOxendale/sitemap.xml
