@@ -1,0 +1,30 @@
+name: Check public ALO website availability
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  website-health:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check DNS and HTTP for public domain
+        shell: bash
+        run: |
+          echo "Public DNS A records:"
+          getent ahostsv4 arthurleeoxendale.xyz || true
+          echo "Checking publicly served pages:"
+          failed=0
+          for p in "" "writings.html" "timeline.html" "about.html" "robots.txt" "sitemap.xml"; do
+            url="https://arthurleeoxendale.xyz/$p"
+            status=$(curl --location --silent --show-error --max-time 15 --output /dev/null --write-out "%{http_code}" "$url") || status="000"
+            echo "$status $url"
+            if [ "$status" != "200" ]; then
+              failed=1
+            fi
+          done
+          if [ "$failed" -ne 0 ]; then
+            echo "::error::One or more public pages failed; check domain DNS/HTTPS and GitHub Pages settings."
+            exit 1
+          fi
